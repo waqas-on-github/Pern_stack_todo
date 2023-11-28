@@ -32,8 +32,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           fontSize: "16px",
           maxWidth: "500px",
           padding: "16px  24px",
-          backgroundColor: "grey",
-          color: "red",
+          backgroundColor: "white",
+          color: "black",
         },
       }}
     />

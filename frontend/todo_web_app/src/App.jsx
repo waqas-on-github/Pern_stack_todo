@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Nav/>}>
         <Route path="new" element={<CreateAccount />} />
+        
         </Route>
       </Routes>
     </BrowserRouter>
