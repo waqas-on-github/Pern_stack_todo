@@ -19,7 +19,7 @@ const SpinnerContainer = styled.div`
 
 const SpinnerElement = styled.div`
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #3498db; /* Change color as needed */
+  border-top: 4px solid orangered; /* Change color as needed */
   border-radius: 50%;
   width: ${(props) => props.size || '30px'};
   height: ${(props) => props.size || '30px'};

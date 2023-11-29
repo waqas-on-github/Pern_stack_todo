@@ -20,11 +20,11 @@ function Nav() {
   };
 
   const register = () => {
-    navigate("/new")
+    navigate("/auth/signup")
   }
   
  const login = () => {
-  navigate("/login")
+  navigate("/auth/login")
  }
 
 

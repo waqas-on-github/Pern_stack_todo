@@ -36,7 +36,7 @@ const logOutUser = async () => {
   const navigate = useNavigate()
   return (
     <StyledCard>
-    <button onClick={() => { navigate('/new')  }} >Profile</button>
+    <button onClick={() => { navigate('/auth/update')  }} >Profile</button>
     <button onClick={logOutUser} > Logout </button>
     </StyledCard>
   )
