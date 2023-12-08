@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
+
 const AvatarWrapper = styled.div`
   width: ${(props) => props.size || '40px'};
   height: ${(props) => props.size || '40px'};
-  background-color: ${(props) => props.backgroundColor || "black"};
+  background-color: ${(props) => props.backgroundcolor || "grey"};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +16,11 @@ const AvatarWrapper = styled.div`
   cursor: pointer;
 `
 
-const Avatar = ({ username, size, backgroundColor, textColor, fontSize }) => {
+const Avatar = ({ username, size, backgroundcolor, textColor, fontSize }) => {
   return (
     <AvatarWrapper
       size={size}
-      backgroundColor={backgroundColor}
+      backgroundcolor={backgroundcolor}
       textColor={textColor}
       fontSize={fontSize}
     >

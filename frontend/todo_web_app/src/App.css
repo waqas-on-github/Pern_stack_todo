@@ -2,8 +2,5 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-h1{
-   display:  flex; 
+    transition: all ease-in-out 1s;
 }

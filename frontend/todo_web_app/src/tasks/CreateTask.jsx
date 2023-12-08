@@ -1,6 +1,9 @@
-import { useForm } from "react-hook-form"
-import * as yup from  'yup'
-import { yupResolver } from "@hookform/resolvers/yup"
+import { Container  , Main } from "../ui/TaskContainer"
+import { GoPlus } from "react-icons/go";
+import {useSelector , useDispatch} from "react-redux"
+import { setTask } from "../Slices/taskSlice";
+import TaskForm from '../tasks/TaskForm'
+  
 
 
 
@@ -8,13 +11,24 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 
 export const CreateTask = () => {
-
-const {register , handleSubmit , reset ,formState} = useForm({
-
-})    
+  const showTask = useSelector((state ) => state?.task?.showTask) 
+  const dispatch = useDispatch()
+   
   return (
-    <> 
-    
-    </>
+    <Container> 
+      <Main>
+    { !showTask &&  <div onClick={() => {dispatch(setTask(!showTask))}}
+  
+        className="addtask" >
+        <GoPlus />  
+         <span>Add task</span>        
+
+      </div>
+    }
+    {showTask&&<TaskForm/>}
+
+
+      </Main>
+    </Container>
   )
 }
