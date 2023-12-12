@@ -16,7 +16,6 @@ const user = useSelector((state) => state?.auth?.userInfo)
        
        {user?  <SideMenu/>  : <h1>Login or Signup</h1>}
        <div className="main" >
-
        <Outlet/>
        </div>
        </StyledMain>

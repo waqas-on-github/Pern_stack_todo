@@ -17,7 +17,7 @@ export const CreateTask = () => {
   return (
     <Container> 
       <Main>
-    { !showTask &&  <div onClick={() => {dispatch(setTask(!showTask))}}
+    {!showTask &&  <div onClick={() => {dispatch(setTask(!showTask))}}
   
         className="addtask" >
         <GoPlus />  

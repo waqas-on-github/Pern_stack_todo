@@ -10,8 +10,8 @@ import { setTask } from "../Slices/taskSlice";
 const TaskForm = () => {
 const currentDueDate =  new Date(Date.now()).toISOString().slice(0, 16)
 
-const userId = useSelector((state) =>state?.auth?.userInfo?.id) 
-const showTask = useSelector((state ) => state?.task?.showTask) 
+const userId = useSelector((state) => state?.auth?.userInfo?.id) 
+const showTask = useSelector((state) => state?.task?.showTask) 
 
 const  {mutate} = useCreateTask()
 const dispatch = useDispatch()
@@ -25,14 +25,22 @@ const schema  = yup.object().shape({
 })
 
 const  {register , handleSubmit , reset , formState} = useForm({
-      resolver : yupResolver(schema)
+      resolver : yupResolver(schema),
 })
 
 const {errors} = formState;
 
 const submitTask = async (data) => {
   console.log(data);
-    await mutate({...data , user: userId ,dueDate : new Date(data.dueDate).toISOString() })
+    await mutate({...data , user: userId ,dueDate : new Date(data.dueDate).toISOString() } , {
+      onSuccess : (data) => {
+        console.log(data);
+      } ,
+      onError : (error) => {
+        console.log(error);
+      
+      }
+    })
 }
 
   return (
