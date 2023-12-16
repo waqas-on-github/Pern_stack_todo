@@ -6,6 +6,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { setTask } from "../Slices/taskSlice";
 import { LuListTodo } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineDelete } from "react-icons/md";
+
 
 
 
@@ -42,7 +44,8 @@ const SideMenu = () => {
             <BsPlusCircleFill />
            Add Task 
         </h4>
-          <h4 onClick={() => {navigate("/task/tasks")}} ><LuListTodo /> Inbox </h4>
+          <h4 onClick={() => {navigate("/task/show/tasks")}} ><LuListTodo /> Inbox </h4>
+          <h4 onClick={() => {navigate("/task/show/trash")}} > <MdOutlineDelete/>  Trash</h4>
 
         </div>
         </div> 

@@ -6,7 +6,8 @@ import UpdateAccount from "./auth/UpdateAccount";
 import AuthroizeUser from "./tasks/AuthroizeUser";
 import { CreateTask }from './tasks/CreateTask'
 import Showtask from './tasks/Showtask'
-
+import OneTask from "./tasks/OneTask";
+import Trash from "./trash/Trash";
 
 function App() {
   return (
@@ -18,8 +19,11 @@ function App() {
           <Route path="auth/update" element={<UpdateAccount />} />
            <Route path="task" element={<AuthroizeUser />}> 
              <Route path="new" element={<CreateTask/>} /> 
-             <Route path="tasks" element={<Showtask/>} /> 
-
+             <Route path="show" element={<Showtask/>} > 
+                <Route path="tasks" element= {<OneTask/>}/>
+                 <Route path="trash" element= {<Trash/>}/>
+             
+             </Route> 
 
            </Route>
 

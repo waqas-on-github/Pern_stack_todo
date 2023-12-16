@@ -1,7 +1,7 @@
 import { StyledContainer } from "../ui/Taskui"
-import OneTask from "./OneTask"
 import TaskHeading from "./TaskHeading"
 import { useShowTask } from "./useShowTask"
+import {Outlet} from "react-router-dom"
 
 
 
@@ -29,7 +29,7 @@ const Showtask = () => {
       {data?.data?.tasks?.map((task) => {
         return (
           <div key = {task.id}> 
-          <OneTask task={task}  />
+          < Outlet context={task}  />
           </div>
          )
         })}

@@ -7,18 +7,19 @@ import toast from "react-hot-toast";
 
 
 
-const useDeleteTask = () => {
+const useAddToTrash = () => {
     const queryClient = useQueryClient();
        
     const  {mutate} = useMutation({ 
      
         mutationFn : async (task) => {            
             console.log(task);
-            return  await axios.delete(`/api/v1/task/delete/${task?.id}`)
+            // adding task to trash 
+            return  await axios.patch(`/api/v1/task/add/${task?.id}`)
         },
 
         onSuccess : () =>{
-            toast.success("task deleted successfully")
+            toast.success("task move to trash successfully")
             queryClient.invalidateQueries({
                 queryKey : ["tasks"]
             })
@@ -39,6 +40,6 @@ const useDeleteTask = () => {
 
 
 export {
-    useDeleteTask
+    useAddToTrash
 }
 
