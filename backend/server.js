@@ -1,18 +1,19 @@
 // import npm packages
-
 import 'dotenv/config.js'
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import logger from 'morgan'
-import CustomError from './utils/CustomError.js'
+import { errorHandler } from './middlewares/errorHandler.js'
+import cors from 'cors'
 
 
 // import routers
 import { router as indexRouter } from './routes/index.js'
 import { router as taskRouter } from './routes/task.route.js'
 import { router as userRouter } from './routes/user.route.js'
+import  {router as trashRouter} from './routes/tarsh.route.js'
 // create the express app
 const app = express()
 
@@ -24,12 +25,14 @@ app.use(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
   )
 )
+app.use(cors())
 
 
 // mount imported routes
 app.use('/', indexRouter)
 app.use("/api/v1/task" , taskRouter)
 app.use("/api/v1/user" , userRouter)
+app.use("/api/v1/trash" , trashRouter)
 
 
 
@@ -39,36 +42,6 @@ app.use(function (req, res, next) {
 })
 
 // error handler middleware 
-app.use(function (err, req, res, next) {
-  if(err instanceof(CustomError)) {
-    // do acc to custom error 
-    return res.status(err.code || 500).json({
-      sucess:  false,
-      error : err.message
-    })
-  }
-
-
- if(err) {
-
-
-    if(err.name ==="PrismaClientKnownRequestError" || err.name ==="NotFoundError") {
-
-     return  res.json({
-         success : false , 
-         err:  "prisma error" , 
-         message :  err.message ,
-
-     })
-    }
-
-
-  return res.status(err?.code || 500 || 400).json({
-    sucess:  false,
-    error : err.message
-  })
- }
-
-})
+app.use(errorHandler)
 
 export { app }

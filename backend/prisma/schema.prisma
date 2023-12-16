@@ -13,14 +13,19 @@ datasource db {
 
 
 model  User {
+
   id         Int       @unique @default(autoincrement())
   name       String 
   email      String    @unique
   password   String
+  task       Task[]   // user have one to many relation with Tasks 
+  trash      Trash?  // user have one to one relation with trash model 
+  // last two lines  just mean  user table has relation/refrenced in task and trash tabel/model 
 } 
 
 
 model Task {
+
   id           Int         @unique @default(autoincrement())
   name         String 
   description  String
@@ -29,6 +34,23 @@ model Task {
   updateAt     DateTime    @updatedAt
   dueDate      DateTime?    
   preriorty    Prerioty    @default(Medium)
+  user         User @relation(fields: [userId], references: [id])  
+  userId   Int   // here we related/refrenced  user tabel 
+  trash      Trash? @relation(fields: [trashId], references: [id])    
+  trashId  Int?  // here we refrence trash tabel 
+  // so we must need thes above two id to create  task we must need user and trash table ids 
+
+
+}
+
+
+model Trash {
+
+  id Int @unique @default(autoincrement())
+  task  Task[]  // trash have one to many relatonship with Tasks  
+  user         User @relation(fields: [userId], references: [id]) // when we wanna create trash we must 
+  // user so hence only regesterd user can create trash table 
+  userId   Int @unique()
 
 }
 
